@@ -1,0 +1,27 @@
+[package]
+name = "swap"                # Name of your Solana program
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]   # Compile as both a dynamic library (for Solana) and a regular library
+name = "swap"
+
+[features]
+# Feature flags for conditional compilation
+default = []
+cpi = ["no-entrypoint"]         # For cross-program invocation support
+no-entrypoint = []              # Disable program entrypoint
+no-idl = []                     # Disable IDL generation
+no-log-ix-name = []             # Disable instruction name logging
+idl-build = [                   # Features needed for IDL generation
+    "anchor-lang/idl-build",
+    "anchor-spl/idl-build",
+]
+
+[dependencies]
+# Core dependencies
+anchor-lang = { version = "0.30.1", features = ["init-if-needed"] }  # Main Anchor framework
+anchor-spl = "0.30.1"           # Anchor SPL token integration
+solana-program = "2.0.3"        # Core Solana programming framework
